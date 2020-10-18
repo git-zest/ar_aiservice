@@ -48,6 +48,10 @@ app.use(bodyparser.urlencoded({ extended: true }));
 //    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 //});
 
+app.get('/api/getapplication', function(req,res){
+  res.send('approved')
+}
+
 
 // Post method login
 app.post('/api/submitapplication', function(req,res){
