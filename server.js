@@ -50,7 +50,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 
 app.get('/api/getapplication', function(req,res){
   res.send('approved')
-}
+});
 
 
 // Post method login
