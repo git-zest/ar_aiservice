@@ -73,7 +73,7 @@ app.get('/api/getlastcarname', function(req,res){
     collection.find({}).toArray(function(err, docs) {
       var totallength=docs.length
       console.log(docs[totallength-1].carname);
-      var applicationnumber="Car:"+docs[totallength-1].carname + "Variant:"+docs[totallength-1].variant
+      var applicationnumber="Car:"+docs[totallength-1].carname+"    "  + "Variant:"+docs[totallength-1].variant
       res.send(applicationnumber);
     })
 });
@@ -120,7 +120,7 @@ app.get('/api/getlastbeforecarname', function(req,res){
     collection.find({}).toArray(function(err, docs) {
       var totallength=docs.length
       console.log(docs[totallength-2].carname);
-      var applicationnumber="Car:"+docs[totallength-2].carname + "Variant:"+docs[totallength-2].variant
+      var applicationnumber="Car:"+docs[totallength-2].carname+"    " + "Variant:"+docs[totallength-2].variant
       res.send(applicationnumber);
     })
 });
@@ -141,6 +141,24 @@ app.get('/api/getlastbeforestatus', function(req,res){
 });
 });
 
+
+app.post('/api/motivateapplication', function(req,res){
+  console.log(req);
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  MongoClient.connect(uri, function(err, client1) {
+    console.log("Connected successfully to server");
+    const db1 = client1.db("xmlapp");
+    const collection1 = db1.collection("worklist");
+    var num = Math.floor(Math.random() * 90000) + 10000;
+    collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Arbitration"}, function(err, result) {
+      client1.close();
+      client.close();
+      res.send(docs[0].status);
+    })
+  });
+
+})
 
 // Post method login
 app.post('/api/submitapplication', function(req,res){
