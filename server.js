@@ -48,15 +48,91 @@ app.use(bodyparser.urlencoded({ extended: true }));
 //    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 //});
 
-app.get('/api/getapplication1description', function(req,res){
+app.get('/api/getlastapplicationnumber', function(req,res){
   const MongoClient = require('mongodb').MongoClient;
   const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("xmlapp").collection("worklist");
     collection.find({}).toArray(function(err, docs) {
-      console.log(docs);
-      res.send(docs);
+      var totallength=docs.length
+      console.log(docs[totallength-1].applicationnumber);
+      var applicationnumber=""+docs[totallength-1].applicationnumber
+      res.send(applicationnumber);
+    })
+});
+});
+
+
+app.get('/api/getlastcarname', function(req,res){
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      console.log(docs[totallength-1].carname);
+      var applicationnumber="Car:"+docs[totallength-1].carname + "Variant:"+docs[totallength-1].variant
+      res.send(applicationnumber);
+    })
+});
+});
+
+app.get('/api/getlaststatus', function(req,res){
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      console.log(docs[totallength-1].carname);
+      var applicationnumber=docs[totallength-1].status;
+      res.send(applicationnumber);
+    })
+});
+});
+
+
+app.get('/api/getlastbeforeapplicationnumber', function(req,res){
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      var totallength=docs.length
+      console.log(docs[totallength-2].applicationnumber);
+      var applicationnumber=""+docs[totallength-2].applicationnumber
+      res.send(applicationnumber);
+    })
+});
+});
+
+
+app.get('/api/getlastbeforecarname', function(req,res){
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      console.log(docs[totallength-2].carname);
+      var applicationnumber="Car:"+docs[totallength-2].carname + "Variant:"+docs[totallength-2].variant
+      res.send(applicationnumber);
+    })
+});
+});
+
+app.get('/api/getlastbeforestatus', function(req,res){
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      console.log(docs[totallength-2].carname);
+      var applicationnumber=docs[totallength-2].status;
+      res.send(applicationnumber);
     })
 });
 });
