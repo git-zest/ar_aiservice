@@ -58,8 +58,6 @@ app.post('/api/submitapplication', function(req,res){
   console.log(req);
   const MongoClient = require('mongodb').MongoClient;
 
-
-
   const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
@@ -68,11 +66,24 @@ app.post('/api/submitapplication', function(req,res){
     //assert.equal(err, null);
     //console.log("Found the following records");
     //console.log(docs.status)
-    res.send(docs[0].status);
+    if(docs[0].status=='Approved'){
+    MongoClient.connect(uri, function(err, client1) {
+      console.log("Connected successfully to server");
+      const db1 = client1.db("xmlapp");
+      const collection1 = db1.collection("xmlgenerator");
+      collection1.insert({name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
+        client1.close();
+        client.close();
+        res.send(docs[0].status);
+      })
     });
-    client.close();
+    }
+    else{
+      client.close();
+      res.send(docs[0].status);
+    }
+    });
   });
-
 })
 
 
