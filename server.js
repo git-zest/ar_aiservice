@@ -48,7 +48,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 //    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 //});
 
-app.get('/api/getapplication', function(req,res){
+app.get('/api/getapplication1description', function(req,res){
   res.send('approved')
 });
 
@@ -71,7 +71,8 @@ app.post('/api/submitapplication', function(req,res){
       console.log("Connected successfully to server");
       const db1 = client1.db("xmlapp");
       const collection1 = db1.collection("worklist");
-      collection1.insertOne({name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
+      var num = Math.floor(Math.random() * 90000) + 10000;
+      collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
         client1.close();
         client.close();
         res.send(docs[0].status);
