@@ -70,7 +70,7 @@ app.post('/api/submitapplication', function(req,res){
     MongoClient.connect(uri, function(err, client1) {
       console.log("Connected successfully to server");
       const db1 = client1.db("xmlapp");
-      const collection1 = db1.collection("xmlgenerator");
+      const collection1 = db1.collection("worklist");
       collection1.insertOne({name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
         client1.close();
         client.close();
