@@ -49,7 +49,16 @@ app.use(bodyparser.urlencoded({ extended: true }));
 //});
 
 app.get('/api/getapplication1description', function(req,res){
-  res.send('approved')
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://xmluser:xmluser@xmlapp.y4ioi.mongodb.net/xmlapp?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("xmlapp").collection("worklist");
+    collection.find({}).toArray(function(err, docs) {
+      console.log(docs);
+      res.send(docs);
+    })
+});
 });
 
 
