@@ -71,7 +71,7 @@ app.post('/api/submitapplication', function(req,res){
       console.log("Connected successfully to server");
       const db1 = client1.db("xmlapp");
       const collection1 = db1.collection("xmlgenerator");
-      collection1.insert({name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
+      collection1.insertOne({name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
         client1.close();
         client.close();
         res.send(docs[0].status);
