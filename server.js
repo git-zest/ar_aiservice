@@ -71,6 +71,7 @@ app.get('/api/getlastcarname', function(req,res){
   client.connect(err => {
     const collection = client.db("xmlapp").collection("worklist");
     collection.find({}).toArray(function(err, docs) {
+      var totallength=docs.length
       console.log(docs[totallength-1].carname);
       var applicationnumber="Car:"+docs[totallength-1].carname + "Variant:"+docs[totallength-1].variant
       res.send(applicationnumber);
@@ -85,6 +86,7 @@ app.get('/api/getlaststatus', function(req,res){
   client.connect(err => {
     const collection = client.db("xmlapp").collection("worklist");
     collection.find({}).toArray(function(err, docs) {
+      var totallength=docs.length
       console.log(docs[totallength-1].carname);
       var applicationnumber=docs[totallength-1].status;
       res.send(applicationnumber);
@@ -116,6 +118,7 @@ app.get('/api/getlastbeforecarname', function(req,res){
   client.connect(err => {
     const collection = client.db("xmlapp").collection("worklist");
     collection.find({}).toArray(function(err, docs) {
+      var totallength=docs.length
       console.log(docs[totallength-2].carname);
       var applicationnumber="Car:"+docs[totallength-2].carname + "Variant:"+docs[totallength-2].variant
       res.send(applicationnumber);
@@ -130,6 +133,7 @@ app.get('/api/getlastbeforestatus', function(req,res){
   client.connect(err => {
     const collection = client.db("xmlapp").collection("worklist");
     collection.find({}).toArray(function(err, docs) {
+      var totallength=docs.length
       console.log(docs[totallength-2].carname);
       var applicationnumber=docs[totallength-2].status;
       res.send(applicationnumber);
