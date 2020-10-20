@@ -153,6 +153,7 @@ app.post('/api/motivateapplication', function(req,res){
     var num = Math.floor(Math.random() * 90000) + 10000;
     collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Arbitration"}, function(err, result) {
       client1.close();
+      
       if(err){
         res.send('approved');
       }else{
