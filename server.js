@@ -151,7 +151,7 @@ app.post('/api/motivateapplication', function(req,res){
     const db1 = client1.db("xmlapp");
     const collection1 = db1.collection("worklist");
     var num = Math.floor(Math.random() * 90000) + 10000;
-    collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Arbitration"}, function(err, result) {
+    collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"BMW",variant:"330is LIMITED EDITION",status:"Arbitration"}, function(err, result) {
       client1.close();
 
       if(err){
@@ -184,7 +184,7 @@ app.post('/api/submitapplication', function(req,res){
       const db1 = client1.db("xmlapp");
       const collection1 = db1.collection("worklist");
       var num = Math.floor(Math.random() * 90000) + 10000;
-      collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"Lamborghini",variant:"Huracan",status:"Approved"}, function(err, result) {
+      collection1.insertOne({applicationnumber:num,name:"Ravi Kastala", carname:"BMW",variant:"330is LIMITED EDITION",status:"Approved"}, function(err, result) {
         client1.close();
         client.close();
         res.send(docs[0].status);
